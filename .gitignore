@@ -1,0 +1,7 @@
+Makefile
+bin
+.lib
+.ui
+.moc
+*.kdev4
+*.stash
