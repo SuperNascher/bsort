@@ -1,7 +1,11 @@
 Makefile
+Makefile.Release
+Makefile.Debug
 bin
 .lib
 .ui
 .moc
 *.kdev4
 *.stash
+*.a
+*.so
