@@ -82,7 +82,9 @@ void BMainWindow::slotGenerateRandomData()
 {
     QList<int> tList;
     for (int i = 0; i < myCountSpinBox->value(); ++i)
-        tList.append(brand(100));
+    {
+        tList.append(brand(1000));
+    }
     myManager->setValues(tList);
 }
 
