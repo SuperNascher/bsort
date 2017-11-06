@@ -83,6 +83,7 @@ void BPluginManager::setValues(QList< int > aList)
 
 void BPluginManager::run()
 {
+    myFinishedCount = 0;
     foreach(IPlugin *tPlugin, myPluginList)
     {
         tPlugin->init()->setCanStop(false);
@@ -108,7 +109,8 @@ void BPluginManager::setSleepTime(uint aMSecs)
 
 void BPluginManager::slotFinished()
 {
-    if (++myFinishedCount == myPluginList.size())
+    myFinishedCount += 1;
+    if (myFinishedCount == myPluginList.size())
     {
         emit finished();
         myFinishedCount = 0;
