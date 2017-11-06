@@ -26,7 +26,7 @@ BogoSort::BogoSort()
 {
 }
 
-BogoSort::~ BogoSort()
+BogoSort::~BogoSort()
 {
 }
 
@@ -35,8 +35,9 @@ bool BogoSort::isSorted()
     for (int i = 1; i < myList.size(); i++)
     {
         emit compare(i-1, i);
-        msleep( sleeptime() );
-        if (myList.at(i) < myList.at(i-1)) return false;
+        msleep(sleeptime());
+        if (myList.at(i) < myList.at(i-1))
+            return false;
     }
     return true;
 }
@@ -49,17 +50,18 @@ void BogoSort::run()
     }
 
     int i, j, tmp;
+    int const maxIndex = myList.size() - 1;
 
     while (isSorted() == false)
     {
-        if(canStop())
-            break;
+        if (canStop())
+            return; // do not mark sort as finished
 
         // Get random list positions and swap the list entries.
         do
         {
-            i = brand(myList.size()-1);
-            j = brand(myList.size()-1);
+            i = brand(maxIndex);
+            j = brand(maxIndex);
         } while (i == j);
 
         emit change(i, j);
@@ -75,7 +77,6 @@ void BogoSort::start(QThread::Priority aVal)
 {
     QThread::start( aVal );
 }
-
 
 QString BogoSort::name() const
 {
